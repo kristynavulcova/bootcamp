@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Coding Bootcamp Testimonials Slider</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <section class="grid">
+      <div class="left-col">
+        <div class="col-img">
+          <img src="images/image-tanya.jpg" alt="Tanya" id="change_img">
+
+          <div class="col-arrows">
+            <img src="images/icon-prev.svg" alt="Previous Arrow" onclick="prev()">
+            <img src="images/icon-next.svg" alt="Next Arrow" onclick="next()">
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="right-col">
+        <div class="col-content">
+          <p id="content">“ I’ve been interested in coding for a while but never taken the jump, until now.
+            I couldn’t recommend this course enough. I’m now in the job of my dreams and so
+            excited about the future. ”</p>
+        </div>
+        <div class="col-author">
+          <span id="author"> Tanya Sinclair</span>
+          <span id="job"> UX Engineer </span>
+
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <img src="images/pattern-curve.svg" alt="Curve">
+  </footer>
+
+</body>
+<script>
+  // Pole
+  var authors = ["Tanya Sinclair", "John Tarkpor"];
+  var jobs = ["UX Engineer", "Junior Front-end Developer"];
+  var texts = [
+    "“ I’ve been interested in coding for a while but never taken the jump, until now. I couldn’t recommend this course enough. I’m now in the job of my dreams and so excited about the future. ”",
+    "“ If you want to lay the best foundation possible I’d recommend taking this course. The depth the instructors go into is incredible. I now feel so confident about starting up as a professional developer. ”"
+  ];
+  var pictures = ["image-tanya.jpg", "image-john.jpg"];
+
+  // aktuální index
+  var index = 0;
+  // konečný index
+  var last_index = authors.length - 1;
+
+
+  function prev() {
+    // Pokud je úplně vlevo, jdi nakonec, jinak jdi doleva
+    if (index == 0) {
+      index = last_index;
+    } else {
+      index--;
+    }
+
+    updateContent();
+  }
+
+  function next() {
+    // Pokud je úplně vpravo, jdi nazačátek, jinak jdi doprava
+    if (index == last_index) {
+      index = 0;
+    } else {
+      index++;
+    }
+
+    updateContent();
+  }
+
+  // Aktualizuj elementy podle aktuálního indexu
+  function updateContent() {
+    document.getElementById("content").innerHTML = texts[index];
+    document.getElementById("job").innerHTML = jobs[index];
+    document.getElementById("author").innerHTML = authors[index];
+    document.getElementById("change_img").src = "images/" + pictures[index];
+  }
+
+  document.body.addEventListener("keydown", function (event) {
+    // Zpět
+    if (event.keyCode == 37) {
+      prev();
+      // Dopředu
+    } else if (event.keyCode == 39) {
+      next();
+    } else {
+      next();
+    }
+  });
+</script>
+
+</html>
